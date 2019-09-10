@@ -7,3 +7,16 @@ before_install:
 
 script:
         - docker run nesax/docker-react npm run test -- --coverage
+
+deploy:
+        provider: elasticbeanstalk
+        region: "us-east-2"
+        app: "docker"
+        env: "Docker-env"
+        bucket_name: "elasticbeanstalk-us-east-2-633706877180"
+        bucket_path: "docker"
+        on:
+                branch: master
+        access_key_id: $AWS_ACCESS_KEY
+        secret_sccess_key:
+                secure: "$AWS_SECRET_KEY"
